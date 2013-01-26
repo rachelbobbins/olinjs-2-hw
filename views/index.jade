@@ -1,10 +1,5 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
-  if (message)
-    p #{message}
-  if (error)
-    p #{error}
+  h1 Unsorted list of cats
+  include cats/list

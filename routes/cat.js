@@ -1,16 +1,6 @@
 var mongoose = require('mongoose');
 var Cat = mongoose.model('Cat');
 
-exports.list = function(req, res){
-  Cat.find(function(err, cats){
-    if(err) {
-      console.log(err);
-    }
-    
-    res.render('cats/list', {cats: cats});
-  });
-  
-}
 
 var names = new Array('Abe', 'Bob', 'Cleo', 'Dave', 'Eun Kim', 'Fabio');
 var colors = new Array(
@@ -20,25 +10,22 @@ var colors = new Array(
 )
 
 exports.by_age = function(req, res){
-  Cat.find(function(err, cats){
-    if (err){
-      console.log(err);
-    }
+  Cat.find().sort('age').exec(function(err, cats){
+     res.render('cats/by_age', {cats: cats});
+  });
+}
 
-    cats.sort(function(c1, c2) {
-      return c1.age - c2.age;
-    });
-
-    res.render('cats/list', {cats: cats});
-  })
+exports.with_color = function(req, res){
+  var color = req.params.color;
+  Cat.find({colors: { $in: [color]}}).sort('age').exec(function(err, cats){
+    res.render('cats/with_color', {cats: cats, color: color});
+  });
 }
 
 exports.create = function(req, res){
   function random_choice(array) {
     var len = array.length;
-    var ans = array[Math.floor(Math.random() * len)];
-    console.log(ans)
-    return ans;
+    return array[Math.floor(Math.random() * len)];
   }
 
   new Cat({

@@ -1,7 +1,11 @@
 doctype 5
 html
   head
-    title= title
+    title Cats Galore
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    if (typeof message != 'undefined')
+      p #{message}
+    if (typeof error != 'undefined')
+      p #{error}
     block content
