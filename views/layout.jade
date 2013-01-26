@@ -2,10 +2,20 @@ doctype 5
 html
   head
     title Cats Galore
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css')
   body
-    if (typeof message != 'undefined')
-      p #{message}
-    if (typeof error != 'undefined')
-      p #{error}
-    block content
+    .container.row.offset1.span10
+      h1 #{title || "Some Cats"}
+
+      
+      if (typeof message != 'undefined')
+        .alert.alert-success #{message}
+      if (typeof error != 'undefined')
+        .alert.alert-error #{error}
+      
+      block content
+
+      a(class="button btn", href="/cats") By Age
+      a(class="button btn", href="/cats/color/beige") Only Beige!
+      a(class="button btn btn-primary offset1", href="/cats/new") Create a Cat
+      a(class="button btn btn-danger offset1", href="/cats/delete") Delete a Cat
