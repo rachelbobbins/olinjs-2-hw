@@ -38,7 +38,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/cats/new', cat.create);
-// app.get('/cats', cat.list);
+app.get('/cats', cat.by_age);
 // app.get('/cats/color/:color', cat.by_color);
 // app.get('/cats/delete/old', cat.delete_oldest);
 

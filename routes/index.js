@@ -5,5 +5,6 @@
 
 exports.index = function(req, res){
   var message = req.flash('info');
-  res.render('index', { title: 'Express', message: message });
+  var error = req.flash('error')
+  res.render('index', { title: 'Express', message: message, error: error });
 };

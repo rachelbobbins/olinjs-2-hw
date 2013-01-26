@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var catSchema = mongoose.Schema({
   name: String,
-  color: Array,
+  colors: Array,
   age: Number
 });
 
