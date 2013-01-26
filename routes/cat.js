@@ -6,19 +6,20 @@ var names = new Array('Abe', 'Bob', 'Cleo', 'Dave', 'Eun Kim', 'Fabio');
 var colors = new Array(
   new Array('brown', 'black', 'white'),
   new Array('beige'),
-  new Array('gray, green') 
+  new Array('gray', 'green') 
 )
 
 exports.by_age = function(req, res){
   Cat.find().sort('age').exec(function(err, cats){
-     res.render('cats/by_age', {cats: cats});
+     res.render('index', {cats: cats, title: "All cats, by age"});
   });
 }
 
 exports.with_color = function(req, res){
   var color = req.params.color;
+  var title = "Cats with " + color + " fur, by age";
   Cat.find({colors: { $in: [color]}}).sort('age').exec(function(err, cats){
-    res.render('cats/with_color', {cats: cats, color: color});
+    res.render('index', {cats: cats, title: title});
   });
 }
 
@@ -36,7 +37,6 @@ exports.create = function(req, res){
     if (err) {
       console.log("couldn't save new cat");
     } else{
-      console.log("Created a cat", cat);
       msg = "Created " + cat.name + ", age " + cat.age;
       req.flash('info', msg);
       res.redirect('/');
