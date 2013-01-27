@@ -12,10 +12,12 @@ html
         .alert.alert-success #{message}
       if (typeof error != 'undefined')
         .alert.alert-error #{error}
+      if (typeof warning != 'undefined')
+        .alert.alert-info #{warning}
       
       block content
 
       a(class="button btn", href="/cats") By Age
       a(class="button btn", href="/cats/color/beige") Only Beige!
       a(class="button btn btn-primary offset1", href="/cats/new") Create a Cat
-      a(class="button btn btn-danger offset1", href="/cats/delete") Delete a Cat
+      a(class="button btn btn-danger offset1", href="/cats/delete/old") Delete a Cat

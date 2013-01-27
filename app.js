@@ -40,7 +40,7 @@ app.get('/users', user.list);
 app.get('/cats/new', cat.create);
 app.get('/cats', cat.by_age);
 app.get('/cats/color/:color', cat.with_color);
-// app.get('/cats/delete/old', cat.delete_oldest);
+app.get('/cats/delete/old', cat.delete_oldest);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

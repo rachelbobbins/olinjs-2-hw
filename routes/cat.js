@@ -23,6 +23,17 @@ exports.with_color = function(req, res){
   });
 }
 
+exports.delete_oldest = function(req, res){
+  Cat.findOne().sort('created').exec(function(err,cat){
+    var msg = "Deleted " + cat.name + ', created ' + cat.created;
+    cat.remove()
+    
+    req.flash('warning', msg);
+    res.redirect('/');
+  });
+
+};
+
 exports.create = function(req, res){
   function random_choice(array) {
     var len = array.length;
